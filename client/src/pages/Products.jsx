@@ -72,6 +72,21 @@ const Products = () => {
         setFormData({ name: '', sku: '', quantity: 0, price: 0, description: '' });
     };
 
+    const loadSampleProducts = async () => {
+        if (!window.confirm('Load 10 sample products? This will add demo products to your inventory.')) return;
+        try {
+            setLoading(true);
+            const res = await api.post('/products/seed');
+            alert(`✅ ${res.data.msg}\n${res.data.count} products added!`);
+            fetchProducts();
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.msg || 'Failed to load sample products');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.sku.toLowerCase().includes(searchTerm.toLowerCase())
@@ -79,7 +94,19 @@ const Products = () => {
 
     return (
         <div className="container">
-            <h2>Products Management</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <h2>📦 Products Management</h2>
+                <button
+                    onClick={loadSampleProducts}
+                    style={{
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        padding: '0.75rem 1.5rem'
+                    }}
+                    disabled={loading}
+                >
+                    ✨ Load Sample Products
+                </button>
+            </div>
 
             {/* Product Form */}
             <form onSubmit={onSubmit}>
