@@ -7,6 +7,11 @@ const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/products');
 const operationRoutes = require('./routes/operations');
 const ledgerRoutes = require('./routes/ledger');
+const dashboardRoutes = require('./routes/dashboard');
+const warehouseRoutes = require('./routes/warehouses');
+const locationRoutes = require('./routes/locations');
+const deliveryRoutes = require('./routes/deliveries');
+const moveHistoryRoutes = require('./routes/move-history');
 
 const app = express();
 
@@ -19,6 +24,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/operations', operationRoutes);
 app.use('/api/ledger', ledgerRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/warehouses', warehouseRoutes);
+app.use('/api/locations', locationRoutes);
+app.use('/api/deliveries', deliveryRoutes);
+app.use('/api/move-history', moveHistoryRoutes);
 
 // Database Connection
 const sequelize = require('./config/database');

@@ -1,7 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const { Product, Operation, Ledger, sequelize } = require('../models');
+const { Product, Operation, Ledger, User, sequelize } = require('../models');
+
+// Get All Operations
+router.get('/', auth, async (req, res) => {
+    try {
+        const operations = await Operation.findAll({
+            include: [
+                { model: Product, as: 'productId' },
+                { model: User, as: 'performedBy', attributes: ['username'] }
+            ],
+            order: [['date', 'DESC']],
+            limit: 100
+        });
+        res.json(operations);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 // Perform Operation (Receipt, Delivery, Transfer, Adjustment)
 router.post('/', auth, async (req, res) => {

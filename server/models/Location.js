@@ -1,36 +1,24 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Product = sequelize.define('Product', {
+const Location = sequelize.define('Location', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    sku: {
+    shortCode: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-    },
-    quantity: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-    },
-    price: {
-        type: DataTypes.FLOAT,
-        defaultValue: 0
-    },
-    description: {
-        type: DataTypes.TEXT
+        allowNull: false
     },
     warehouseId: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
             model: 'Warehouses',
             key: 'id'
         }
     },
-    locationId: {
+    parentLocationId: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
@@ -38,6 +26,8 @@ const Product = sequelize.define('Product', {
             key: 'id'
         }
     }
+}, {
+    timestamps: true
 });
 
-module.exports = Product;
+module.exports = Location;
