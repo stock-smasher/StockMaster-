@@ -69,13 +69,40 @@ const Warehouses = () => {
         setFormData({ name: '', shortCode: '', address: '' });
     };
 
+    const loadSampleData = async () => {
+        if (!window.confirm('Load sample warehouses and locations? This will add 2 warehouses and 6 locations.')) return;
+        try {
+            setLoading(true);
+            const res = await api.post('/warehouses/seed');
+            alert(`✅ ${res.data.msg}\n${res.data.warehouses} warehouses and ${res.data.locations} locations added!`);
+            fetchWarehouses();
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.msg || 'Failed to load sample data');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="container">
-            <h2>🏭 Warehouse Management</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <h2>Warehouse Management</h2>
+                <button
+                    onClick={loadSampleData}
+                    style={{
+                        background: '#4a4a4a',
+                        padding: '0.75rem 1.5rem'
+                    }}
+                    disabled={loading}
+                >
+                    Load Sample Data
+                </button>
+            </div>
 
             <form onSubmit={onSubmit}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                    {editingId ? '✏️ Edit Warehouse' : '➕ Add New Warehouse'}
+                    {editingId ? 'Edit Warehouse' : 'Add New Warehouse'}
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <input
@@ -120,7 +147,7 @@ const Warehouses = () => {
             ) : warehouses.length === 0 ? (
                 <div className="card text-center" style={{ padding: '3rem', marginTop: '2rem' }}>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-                        🏭 No warehouses yet. Add your first warehouse above!
+                        No warehouses yet. Add your first warehouse above!
                     </p>
                 </div>
             ) : (
@@ -134,7 +161,7 @@ const Warehouses = () => {
 
                             {warehouse.address && (
                                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>
-                                    📍 {warehouse.address}
+                                    {warehouse.address}
                                 </p>
                             )}
 
@@ -154,18 +181,18 @@ const Warehouses = () => {
 
                             <div className="product-actions">
                                 <button
-                                    className="btn-secondary btn-sm"
+                                    className="btn-secondary"
                                     onClick={() => handleEdit(warehouse)}
-                                    style={{ flex: 1 }}
+                                    style={{ flex: 1, padding: '0.75rem' }}
                                 >
-                                    ✏️ Edit
+                                    Edit
                                 </button>
                                 <button
-                                    className="btn-danger btn-sm"
+                                    className="btn-danger"
                                     onClick={() => handleDelete(warehouse.id)}
-                                    style={{ flex: 1 }}
+                                    style={{ flex: 1, padding: '0.75rem' }}
                                 >
-                                    🗑️ Delete
+                                    Delete
                                 </button>
                             </div>
                         </div>

@@ -107,11 +107,11 @@ const Locations = () => {
 
     return (
         <div className="container">
-            <h2>📍 Location Management</h2>
+            <h2>Location Management</h2>
 
             <form onSubmit={onSubmit}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                    {editingId ? '✏️ Edit Location' : '➕ Add New Location'}
+                    {editingId ? 'Edit Location' : 'Add New Location'}
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div>
@@ -198,7 +198,7 @@ const Locations = () => {
             ) : locations.length === 0 ? (
                 <div className="card text-center" style={{ padding: '3rem' }}>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-                        📍 No locations yet. Add your first location above!
+                        No locations yet. Add your first location above!
                     </p>
                 </div>
             ) : (
@@ -221,11 +221,11 @@ const Locations = () => {
                                 <td>{location.parentLocation?.name || '-'}</td>
                                 <td>
                                     <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                        <button className="btn-secondary btn-sm" onClick={() => handleEdit(location)}>
-                                            ✏️
+                                        <button className="btn-secondary" onClick={() => handleEdit(location)} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+                                            Edit
                                         </button>
-                                        <button className="btn-danger btn-sm" onClick={() => handleDelete(location.id)}>
-                                            🗑️
+                                        <button className="btn-danger" onClick={() => handleDelete(location.id)} style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+                                            Delete
                                         </button>
                                     </div>
                                 </td>

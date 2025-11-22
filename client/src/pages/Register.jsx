@@ -45,12 +45,7 @@ const Register = () => {
                 padding: '2.5rem'
             }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <div style={{
-                        fontSize: '3rem',
-                        marginBottom: '1rem'
-                    }}>
-                        ✨
-                    </div>
+
                     <h2 style={{
                         fontSize: '2rem',
                         marginBottom: '0.5rem',
@@ -89,7 +84,7 @@ const Register = () => {
                             fontSize: '0.9rem',
                             fontWeight: '500'
                         }}>
-                            👤 Username
+                            Username
                         </label>
                         <input
                             type="text"
@@ -111,7 +106,7 @@ const Register = () => {
                             fontSize: '0.9rem',
                             fontWeight: '500'
                         }}>
-                            🔑 Password
+                            Password
                         </label>
                         <input
                             type="password"
@@ -143,7 +138,7 @@ const Register = () => {
                             marginBottom: '1rem'
                         }}
                     >
-                        {loading ? '🔄 Creating account...' : '🚀 Create Account'}
+                        {loading ? 'Creating account...' : 'Create Account'}
                     </button>
 
                     <div style={{

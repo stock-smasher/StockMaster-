@@ -85,7 +85,7 @@ const Dashboard = () => {
             {stats.lowStockProducts && stats.lowStockProducts.length > 0 && (
                 <div className="card mb-3" style={{ background: 'rgba(245, 158, 11, 0.1)', borderColor: 'var(--warning)' }}>
                     <h3 style={{ color: 'var(--warning)', fontSize: '1.25rem', marginBottom: '1rem' }}>
-                        ⚠️ Low Stock Alert
+                        Low Stock Alert
                     </h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {stats.lowStockProducts.map(product => (
@@ -135,9 +135,9 @@ const Dashboard = () => {
                                     <td>{entry.productId ? entry.productId.name : 'Deleted Product'}</td>
                                     <td>
                                         <span className={`badge badge-${entry.operationId?.type === 'receipt' ? 'success' :
-                                                entry.operationId?.type === 'delivery' ? 'primary' :
-                                                    entry.operationId?.type === 'adjustment' ? 'warning' :
-                                                        'danger'
+                                            entry.operationId?.type === 'delivery' ? 'primary' :
+                                                entry.operationId?.type === 'adjustment' ? 'warning' :
+                                                    'danger'
                                             }`}>
                                             {entry.operationId ? entry.operationId.type : 'N/A'}
                                         </span>

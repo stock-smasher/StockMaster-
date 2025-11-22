@@ -35,12 +35,12 @@ const MoveHistory = () => {
 
     return (
         <div className="container">
-            <h2>📋 Move History</h2>
+            <h2>Move History</h2>
 
             <div style={{ marginBottom: '1rem' }}>
                 <input
                     type="text"
-                    placeholder="🔍 Search by reference, contact, or location..."
+                    placeholder="Search by reference, contact, or location..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     style={{ margin: 0 }}
@@ -52,7 +52,7 @@ const MoveHistory = () => {
             ) : filteredMoves.length === 0 ? (
                 <div className="card text-center" style={{ padding: '3rem' }}>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-                        {searchTerm ? '🔍 No moves found matching your search' : '📋 No move history yet'}
+                        {searchTerm ? 'No moves found matching your search' : 'No move history yet'}
                     </p>
                 </div>
             ) : (

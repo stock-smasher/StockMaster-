@@ -78,7 +78,7 @@ const Operations = () => {
             {/* Operation Form */}
             <form onSubmit={onSubmit}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                    📋 New Operation
+                    New Operation
                 </h3>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
@@ -87,10 +87,10 @@ const Operations = () => {
                             Operation Type
                         </label>
                         <select name="type" value={formData.type} onChange={onChange} required>
-                            <option value="receipt">📥 Receipt (Add Stock)</option>
-                            <option value="delivery">📤 Delivery (Remove Stock)</option>
-                            <option value="transfer">🔄 Transfer</option>
-                            <option value="adjustment">⚙️ Adjustment</option>
+                            <option value="receipt">Receipt (Add Stock)</option>
+                            <option value="delivery">Delivery (Remove Stock)</option>
+                            <option value="transfer">Transfer</option>
+                            <option value="adjustment">Adjustment</option>
                         </select>
                     </div>
 
@@ -139,7 +139,7 @@ const Operations = () => {
                 </div>
 
                 <button type="submit">
-                    {getOperationIcon(formData.type)} Perform Operation
+                    Perform Operation
                 </button>
             </form>
 
@@ -152,7 +152,7 @@ const Operations = () => {
                 ) : operations.length === 0 ? (
                     <div className="card text-center" style={{ padding: '3rem' }}>
                         <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-                            📋 No operations yet. Perform your first operation above!
+                            No operations yet. Perform your first operation above!
                         </p>
                     </div>
                 ) : (
@@ -173,7 +173,7 @@ const Operations = () => {
                                     <td>{new Date(operation.date).toLocaleString()}</td>
                                     <td>
                                         <span className={`badge badge-${getOperationColor(operation.type)}`}>
-                                            {getOperationIcon(operation.type)} {operation.type}
+                                            {operation.type}
                                         </span>
                                     </td>
                                     <td>{operation.productId?.name || 'Deleted Product'}</td>

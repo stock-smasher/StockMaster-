@@ -100,4 +100,41 @@ router.delete('/:id', auth, async (req, res) => {
     }
 });
 
+// Seed Sample Warehouses and Locations
+router.post('/seed', auth, async (req, res) => {
+    try {
+        // Create sample warehouses
+        const warehouse1 = await Warehouse.create({
+            name: 'Main Warehouse',
+            shortCode: 'WH-MAIN',
+            address: '123 Industrial Park, City'
+        });
+
+        const warehouse2 = await Warehouse.create({
+            name: 'Secondary Warehouse',
+            shortCode: 'WH-SEC',
+            address: '456 Storage Ave, City'
+        });
+
+        // Create sample locations
+        await Location.bulkCreate([
+            { name: 'Stock Room A', shortCode: 'SR-A', warehouseId: warehouse1.id },
+            { name: 'Stock Room B', shortCode: 'SR-B', warehouseId: warehouse1.id },
+            { name: 'Receiving Dock', shortCode: 'RD-1', warehouseId: warehouse1.id },
+            { name: 'Shipping Dock', shortCode: 'SD-1', warehouseId: warehouse1.id },
+            { name: 'Storage Area 1', shortCode: 'SA-1', warehouseId: warehouse2.id },
+            { name: 'Storage Area 2', shortCode: 'SA-2', warehouseId: warehouse2.id }
+        ]);
+
+        res.json({
+            msg: 'Sample warehouses and locations loaded successfully',
+            warehouses: 2,
+            locations: 6
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ msg: 'Error loading sample data', error: err.message });
+    }
+});
+
 module.exports = router;

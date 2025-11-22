@@ -127,9 +127,9 @@ const Deliveries = () => {
     return (
         <div className="container">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h2>🚚 Delivery Operations</h2>
+                <h2>Delivery Operations</h2>
                 <button onClick={() => setShowForm(!showForm)}>
-                    {showForm ? '❌ Cancel' : '➕ New Delivery'}
+                    {showForm ? 'Cancel' : 'New Delivery'}
                 </button>
             </div>
 
@@ -204,8 +204,8 @@ const Deliveries = () => {
                                     required
                                     style={{ flex: 1, margin: 0 }}
                                 />
-                                <button type="button" onClick={() => removeItem(index)} className="btn-danger btn-sm">
-                                    🗑️
+                                <button type="button" onClick={() => removeItem(index)} className="btn-danger" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>
+                                    Delete
                                 </button>
                             </div>
                         ))}
@@ -233,7 +233,7 @@ const Deliveries = () => {
             ) : deliveries.length === 0 ? (
                 <div className="card text-center" style={{ padding: '3rem' }}>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-                        🚚 No deliveries yet. Create your first delivery above!
+                        No deliveries yet. Create your first delivery above!
                     </p>
                 </div>
             ) : (
@@ -266,26 +266,29 @@ const Deliveries = () => {
                                     <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                                         {delivery.status !== 'done' && getNextStatus(delivery.status) && (
                                             <button
-                                                className="btn-success btn-sm"
+                                                className="btn-success"
                                                 onClick={() => changeStatus(delivery.id, getNextStatus(delivery.status))}
+                                                style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
                                             >
-                                                ✅ Validate
+                                                Validate
                                             </button>
                                         )}
                                         {canGoBack(delivery.status) && (
                                             <button
-                                                className="btn-secondary btn-sm"
+                                                className="btn-secondary"
                                                 onClick={() => changeStatus(delivery.id, delivery.status === 'waiting' ? 'draft' : 'waiting')}
+                                                style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
                                             >
-                                                ⬅️ Back
+                                                Back
                                             </button>
                                         )}
                                         {delivery.status === 'draft' && (
                                             <button
-                                                className="btn-danger btn-sm"
+                                                className="btn-danger"
                                                 onClick={() => deleteDelivery(delivery.id)}
+                                                style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
                                             >
-                                                🗑️
+                                                Delete
                                             </button>
                                         )}
                                     </div>

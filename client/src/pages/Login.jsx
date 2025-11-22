@@ -45,12 +45,7 @@ const Login = () => {
                 padding: '2.5rem'
             }}>
                 <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <div style={{
-                        fontSize: '3rem',
-                        marginBottom: '1rem'
-                    }}>
-                        🔐
-                    </div>
+
                     <h2 style={{
                         fontSize: '2rem',
                         marginBottom: '0.5rem',
