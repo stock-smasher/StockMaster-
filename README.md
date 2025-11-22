@@ -5,7 +5,16 @@ A complete inventory management system.
 ## Tech Stack
 - **Frontend:** React (Vite)
 - **Backend:** Node.js, Express
-- **Database:** MongoDB (Mongoose)
+- **Database:** PostgreSQL (Sequelize)
+
+## Features
+- 📊 Dashboard with statistics
+- 📦 Product management
+- 🔄 Inventory operations
+- 🏭 Multi-warehouse support
+- 📍 Hierarchical locations
+- 🚚 Delivery workflow (draft → waiting → ready → done)
+- 📋 Move history tracking
 
 ## Setup
 
